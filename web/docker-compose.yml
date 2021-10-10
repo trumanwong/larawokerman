@@ -9,13 +9,13 @@ services:
                         - 80:80
                         - 443:443
                 volumes:
-                        - /var/www/laraworkerman:/var/www/laraworkerman
-                        - /var/www/laraworkerman/web/nginx/fastcgi.conf:/etc/nginx/fastcgi.conf
-                        - /var/www/laraworkerman/web/nginx/fastcgi_params:/etc/nginx/fastcgi_params
-                        - /var/www/laraworkerman/web/nginx/snippets:/etc/nginx/snippets
-                        - /var/www/laraworkerman/web/nginx/conf.d:/etc/nginx/conf.d
-                        - /var/www/laraworkerman/web/php/socket:/run/php
-                        - /var/www/laraworkerman/web/nginx/logs:/var/log/nginx/
+                        - ../:/var/www/laraworkerman
+                        - ../web/nginx/fastcgi.conf:/etc/nginx/fastcgi.conf
+                        - ../web/nginx/fastcgi_params:/etc/nginx/fastcgi_params
+                        - ../web/nginx/snippets:/etc/nginx/snippets
+                        - ../web/nginx/conf.d:/etc/nginx/conf.d
+                        - ../web/php/socket:/run/php
+                        - ../web/nginx/logs:/var/log/nginx/
                 depends_on:
                         - php74
                 networks:
@@ -24,16 +24,16 @@ services:
                 image: trumanwl/php:7.4-fpm
                 container_name: php74
                 volumes:
-                        - /var/www/laraworkerman:/var/www/laraworkerman
-                        - /var/www/laraworkerman/web/php/socket:/run/php
-                        - /var/www/laraworkerman/web/supervisor/conf.d:/etc/supervisor/conf.d
+                        - ../:/var/www/laraworkerman
+                        - ../web/php/socket:/run/php
+                        - ../web/supervisor/conf.d:/etc/supervisor/conf.d
                 networks:
                         - web
         im:
             image: trumanwl/php:7.4-fpm
             container_name: im
             volumes:
-                - /var/www/laraworkerman:/var/www/laraworkerman
+                - ../:/var/www/laraworkerman
             ports:
                 - 2346:2346
                 - 1236:1236
